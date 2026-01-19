@@ -15,8 +15,8 @@ The project is developed as a **Minimum Viable Product (MVP)** with a strong foc
 - Online payment flow (mock PhonePe)
 - Cancel booking before acceptance
 - View booking details in modal
-- Notifications for booking & trip events
-- Profile view
+- Receive notifications for booking & trip events
+- View and manage profile
 
 ### 🏢 Vendor
 - View incoming booking requests
@@ -24,7 +24,7 @@ The project is developed as a **Minimum Viable Product (MVP)** with a strong foc
 - Assign drivers & vehicles
 - View booking history
 - View payment overview (cash & online)
-- Profile view
+- View and manage profile
 
 ### 🚖 Driver
 - View assigned trips
@@ -32,7 +32,7 @@ The project is developed as a **Minimum Viable Product (MVP)** with a strong foc
 - Confirm cash payments
 - View trip history
 - Receive trip assignment notifications
-- Profile view
+- View and manage profile
 
 ---
 
@@ -50,12 +50,11 @@ The project is developed as a **Minimum Viable Product (MVP)** with a strong foc
 - Express.js
 - PostgreSQL
 - JWT Authentication
-- Role-based authorization
+- Role-based Authorization
 
 ---
 
 ## 📁 Project Structure
-
 ```text
 Cab-Booking/
 ├── backend/
@@ -77,7 +76,8 @@ Cab-Booking/
 │   │   ├── main.jsx
 │   │   └── App.jsx
 │   ├── index.html
-│   └── package.json
+│   ├── package.json
+│   └── package-lock.json
 │
 ├── database/
 │   └── project.sql
@@ -85,118 +85,108 @@ Cab-Booking/
 ├── .gitignore
 └── README.md
 
+```
 
-🔐 Authentication & Authorization
 
-JWT-based authentication
+## 🔐 Authentication & Authorization
 
-Role-based access control:
+- JWT-based authentication
+- Role-based access control:
+  - `customer`
+  - `vendor`
+  - `driver`
+- Protected backend APIs
+- Protected frontend routes
 
-customer
+---
 
-vendor
+## 💳 Payment Flow
 
-driver
+### Online Payments
+- Initiated by the customer
+- Redirects to a mock PhonePe payment gateway
+- Payment status updated on success
+- Driver can start trip only after successful payment
 
-Protected backend and frontend routes
+### Cash Payments
+- Paid directly to the driver
+- Driver confirms cash payment after trip completion
+- Vendor can view cash payment status
 
-💳 Payment Flow
-Online Payments
+---
 
-Initiated by customer
+## 🔔 Notifications System
 
-Redirects to mock PhonePe gateway
+- Notifications stored in the database
+- Triggered on:
+  - Booking acceptance
+  - Driver assignment
+  - Payment completion
+  - Trip start
+  - Trip completion
+- Accessible via notification modal for all roles
 
-Payment status updated on success
+---
 
-Driver can start trip only after payment
+## 📱 Responsive Design
 
-Cash Payments
+- Mobile-first layout
+- Fully responsive dashboards
+- Optimized for:
+  - Desktop
+  - Tablet
+  - Mobile devices
 
-Paid directly to driver
+---
 
-Driver confirms payment after trip completion
+## 🧪 MVP Scope
 
-Vendor can view payment status
+This project is intentionally built as an **MVP**:
+- Complete booking lifecycle implemented
+- Realistic business logic
+- Clean and maintainable codebase
+- Optional features intentionally excluded:
+  - Live maps
+  - GPS tracking
+  - Admin panel
 
-🔔 Notifications System
+---
 
-Stored in database
+## 🚀 Future Enhancements
 
-Triggered on:
+- Live GPS / map integration
+- Real payment gateway integration
+- Admin panel with analytics
+- Driver performance tracking
 
-Booking acceptance
+---
 
-Driver assignment
-
-Payment completion
-
-Trip start & completion
-
-Accessible via notification modal for all roles
-
-📱 Responsive Design
-
-Mobile-first layout
-
-Fully responsive dashboards
-
-Optimized for:
-
-Desktop
-
-Tablet
-
-Mobile devices
-
-🧪 MVP Scope
-
-This project is intentionally built as an MVP:
-
-Complete booking lifecycle implemented
-
-Realistic business logic
-
-Clean and maintainable code
-
-Optional features (maps, live tracking, admin panel) intentionally excluded
-
-🚀 Future Enhancements
-
-Live GPS / maps integration
-
-Real payment gateway integration
-
-Admin panel
-
-▶️ How to Run the Project
-Backend
+## ▶️ How to Run the Project
+### Backend
+```bash
 cd backend
 npm install
 npm run dev
-
-Frontend
+npm run worker
+```
+### Backend
+```bash
 cd frontend
 npm install
 npm run dev
+```
 
-🏁 Project Status
+## 🏁 Project Status
 
-Core booking flow completed
+- Core booking flow completed
+- Dashboards for all roles implemented
+- Payments & notifications fully functional
+- Responsive UI verified
+- Ready for internship submission
 
-Dashboards for all roles implemented
-
-Payments & notifications working
-
-Responsive UI verified
-
-Ready for internship submission
-
-👨‍💻 Author
-
+## 👨‍💻 Author
 Rohith G N
 Full Stack Developer – LaunchEd Intern
 
-📄 License
-
+## 📄 License
 This project is created for educational and internship evaluation purposes only.
