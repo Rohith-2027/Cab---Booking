@@ -1,0 +1,112 @@
+✅ 1️⃣ IMPORTANT & REQUIRED DATABASE STRUCTURE (FINAL)
+
+These are the ONLY tables + columns your backend actually uses.
+
+🔐 USERS
+CREATE TABLE users (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email TEXT UNIQUE NOT NULL,
+  password TEXT NOT NULL,
+  role TEXT CHECK (role IN ('customer','vendor','driver')) NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+👤 CUSTOMERS
+CREATE TABLE customers (
+  user_id UUID PRIMARY KEY REFERENCES users(id),
+  full_name TEXT NOT NULL,
+  phone_number TEXT UNIQUE NOT NULL,
+  customer_type TEXT CHECK (customer_type IN ('individual','corporate')) NOT NULL,
+  organization_name TEXT,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+🏢 VENDORS
+CREATE TABLE vendors (
+  user_id UUID PRIMARY KEY REFERENCES users(id),
+  vendor_name TEXT NOT NULL,
+  contact_number TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+🚗 DRIVERS
+CREATE TABLE drivers (
+  user_id UUID PRIMARY KEY REFERENCES users(id),
+  driver_name TEXT NOT NULL,
+  phone_number TEXT UNIQUE NOT NULL,
+  license_number TEXT UNIQUE NOT NULL,
+  vendor_id UUID REFERENCES vendors(user_id),
+  is_available BOOLEAN DEFAULT true,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+🚙 VEHICLES ✅ (capacity REMOVED — correct)
+CREATE TABLE vehicles (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  vendor_id UUID REFERENCES vendors(user_id),
+  vehicle_number TEXT UNIQUE NOT NULL,
+  vehicle_type TEXT CHECK (vehicle_type IN ('mini','sedan','suv','luxury')) NOT NULL,
+  is_available BOOLEAN DEFAULT true,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+📦 BOOKINGS (MOST IMPORTANT)
+CREATE TABLE bookings (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  customer_id UUID REFERENCES customers(user_id),
+  vehicle_id UUID REFERENCES vehicles(id),
+  driver_id UUID REFERENCES drivers(user_id),
+  vendor_id UUID REFERENCES vendors(user_id),
+
+  pickup_location TEXT NOT NULL,
+  drop_location TEXT NOT NULL,
+
+  status TEXT CHECK (
+    status IN (
+      'requested',
+      'accepted',
+      'assigned',
+      'ongoing',
+      'completed',
+      'cancelled',
+      'open_market'
+    )
+  ) DEFAULT 'requested',
+
+  customer_type TEXT CHECK (customer_type IN ('individual','corporate')) NOT NULL,
+  booking_priority TEXT CHECK (booking_priority IN ('normal','high')) DEFAULT 'normal',
+  payment_mode TEXT CHECK (payment_mode IN ('cash','online')) NOT NULL,
+  target_time TIMESTAMP,
+
+  created_at TIMESTAMP DEFAULT NOW(),
+  completed_at TIMESTAMP
+);
+
+🔔 NOTIFICATIONS
+CREATE TABLE notifications (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+  message TEXT NOT NULL,
+  is_read BOOLEAN DEFAULT false,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+💳 PAYMENTS
+CREATE TABLE payments (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  booking_id UUID REFERENCES bookings(id) ON DELETE CASCADE,
+  method TEXT CHECK (method IN ('cash','online')) NOT NULL,
+  status TEXT CHECK (status IN ('pending','paid')) DEFAULT 'pending',
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+🧾 AUDIT LOGS
+CREATE TABLE audit_logs (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  booking_id UUID NOT NULL,
+  changed_by UUID NOT NULL,
+  role TEXT NOT NULL,
+  old_status TEXT,
+  new_status TEXT,
+  created_at TIMESTAMP DEFAULT NOW()
+);
