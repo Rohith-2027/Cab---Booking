@@ -54,28 +54,35 @@ The project is developed as a **Minimum Viable Product (MVP)** with a strong foc
 
 ---
 
-## 🗂️ Project Structure
-cab-booking-system/
+## 📁 Project Structure
+
+```text
+Cab-Booking/
 ├── backend/
-│ ├── src/
-│ │ ├── controllers/
-│ │ ├── routes/
-│ │ ├── middlewares/
-│ │ ├── utils/
-│ │ └── index.js
-│ └── .env
+│   ├── src/
+│   │   ├── controllers/
+│   │   ├── middlewares/
+│   │   ├── routes/
+│   │   ├── utils/
+│   │   └── index.js
+│   ├── package.json
+│   └── package-lock.json
 │
 ├── frontend/
-│ ├── src/
-│ │ ├── pages/
-│ │ │ ├── customer/
-│ │ │ ├── vendor/
-│ │ │ └── driver/
-│ │ ├── components/
-│ │ ├── api/
-│ │ └── context/
-│ └── main.jsx
+│   ├── src/
+│   │   ├── api/
+│   │   ├── components/
+│   │   ├── context/
+│   │   ├── pages/
+│   │   ├── main.jsx
+│   │   └── App.jsx
+│   ├── index.html
+│   └── package.json
 │
+├── database/
+│   └── project.sql
+│
+├── .gitignore
 └── README.md
 
 ---
