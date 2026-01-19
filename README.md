@@ -86,98 +86,117 @@ Cab-Booking/
 └── README.md
 
 
+🔐 Authentication & Authorization
 
-## 🔐 Authentication & Authorization
+JWT-based authentication
 
-- JWT-based authentication
-- Role-based access control:
-  - `customer`
-  - `vendor`
-  - `driver`
-- Protected backend and frontend routes
+Role-based access control:
 
----
+customer
 
-## 💳 Payment Flow
+vendor
 
-### Online Payments
-- Initiated by customer
-- Redirects to mock PhonePe gateway
-- Payment status updated on success
-- Driver can start trip only after payment
+driver
 
-### Cash Payments
-- Paid directly to driver
-- Driver confirms payment after trip completion
-- Vendor can view payment status
+Protected backend and frontend routes
 
----
+💳 Payment Flow
+Online Payments
 
-## 🔔 Notifications System
+Initiated by customer
 
-- Stored in database
-- Triggered on:
-  - Booking acceptance
-  - Driver assignment
-  - Payment completion
-  - Trip start & completion
-- Accessible via notification modal for all roles
+Redirects to mock PhonePe gateway
 
----
+Payment status updated on success
 
-## 📱 Responsive Design
+Driver can start trip only after payment
 
-- Mobile-first layout
-- Fully responsive dashboards
-- Optimized for:
-  - Desktop
-  - Tablet
-  - Mobile devices
+Cash Payments
 
----
+Paid directly to driver
 
-## 🧪 MVP Scope
+Driver confirms payment after trip completion
 
-This project is intentionally built as an **MVP**:
-- Complete booking lifecycle implemented
-- Realistic business logic
-- Clean and maintainable code
-- Optional features (maps, live tracking, admin panel) intentionally excluded
+Vendor can view payment status
 
----
+🔔 Notifications System
 
-### Future Enhancements
+Stored in database
 
-- Live GPS / maps
-- Real payment gateway claims
-- Admin panel claims
+Triggered on:
 
+Booking acceptance
 
-## ▶️ How to Run the Project
+Driver assignment
 
-### Backend
+Payment completion
+
+Trip start & completion
+
+Accessible via notification modal for all roles
+
+📱 Responsive Design
+
+Mobile-first layout
+
+Fully responsive dashboards
+
+Optimized for:
+
+Desktop
+
+Tablet
+
+Mobile devices
+
+🧪 MVP Scope
+
+This project is intentionally built as an MVP:
+
+Complete booking lifecycle implemented
+
+Realistic business logic
+
+Clean and maintainable code
+
+Optional features (maps, live tracking, admin panel) intentionally excluded
+
+🚀 Future Enhancements
+
+Live GPS / maps integration
+
+Real payment gateway integration
+
+Admin panel
+
+▶️ How to Run the Project
+Backend
 cd backend
 npm install
 npm run dev
 
-### frontend
+Frontend
 cd frontend
 npm install
 npm run dev
 
+🏁 Project Status
 
-### 🏁 Project Status
-- Core booking flow completed
-- Dashboards for all roles implemented
-- Payments & notifications working
-- Responsive UI verified
-- Ready for internship submission
+Core booking flow completed
 
-### 👨‍💻 Author
+Dashboards for all roles implemented
+
+Payments & notifications working
+
+Responsive UI verified
+
+Ready for internship submission
+
+👨‍💻 Author
+
 Rohith G N
-Full Stack Developer - LaunchEd Intern
+Full Stack Developer – LaunchEd Intern
 
-
-### 📄 License
+📄 License
 
 This project is created for educational and internship evaluation purposes only.
