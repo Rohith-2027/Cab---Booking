@@ -186,6 +186,7 @@ npm run dev
 
 ## 👨‍💻 Author
 Rohith G N
+
 Full Stack Developer – LaunchEd Intern
 
 ## 📄 License
