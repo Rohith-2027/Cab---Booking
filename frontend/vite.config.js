@@ -3,5 +3,5 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/Cab--Booking/',   // ✅ DOUBLE hyphen
+  base: '/Cab---Booking/',   // ✅ THREE hyphens
 })
